@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="hu">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/svg+xml" href="https://i.imghippo.com/files/ZZ5328EM.png">
+    <script>
+
+        document.write("<style>body{background-color:black;color:white}</style>");
+        let adat = [];
+        //adat.push([]);
+        let szine;
+        let szove;
+
+        let tulmas = {
+            color: "",
+            text: "",
+            ocolor: "",
+            otext: ""
+        }
+        let r;
+        //..t a = document.getElementById("szoveg");
+        //console.log(a);
+
+
+        document.addEventListener("DOMContentLoaded", function () {
+            document.getElementById("ind").addEventListener("click", function () {
+                let sor = document.getElementById("sor").value;
+                let oszlop = document.getElementById("oszlop").value;
+                let vaszon = document.getElementById("vaszon");
+                inditas(sor, oszlop, vaszon);
+            })
+            document.getElementById("gomb").addEventListener("click", kiir);
+        })
+        var logic = [];
+        function inditas(sor, oszlop, vaszon) {
+            vaszon.innerHTML = "";
+            logic = [];
+            for (let i = 0; i < sor; i++) {
+                let sorElem = document.createElement("div");
+                sorElem.classList.add("sor");
+                logic.push([]);
+                for (let j = 0; j < oszlop; j++) {
+                    let oszlopElem = document.createElement("div");
+                    oszlopElem.classList.add("oszlop");
+                    oszlopElem.dataset.x = i;
+                    oszlopElem.dataset.y = j;
+
+                    let tul = {
+                        color: "#FFFFFF",
+                        text: "",
+                        ocolor: "",
+                        otext: ""
+                    }
+                    logic[i].push(tul);
+                    oszlopElem.addEventListener("click", (x) => {
+
+                        let szin = document.getElementById("szin").value;
+                        let szov = document.getElementById("szov").value;
+                        if (r == 1) {
+                            logic[i][j].ocolor = logic[i][j].color;
+                            oszlopElem.style.backgroundColor = szin;
+                            logic[i][j].color = szin;
+                        }
+                        if (r == 2) {
+                            logic[i][j].otext = logic[i][j].text;
+                            oszlopElem.innerHTML = szov;
+                            logic[i][j].text = szov;
+                        }
+                        if (r == 3) {
+                            logic[i][j].ocolor = logic[i][j].color;
+                            oszlopElem.style.backgroundColor = szin;
+                            logic[i][j].color = szin;
+                            logic[i][j].otext = logic[i][j].text;
+                            oszlopElem.innerHTML = szov;
+                            logic[i][j].text = szov;
+                        }
+                        if (r == 4) {
+                            logic[i][j].ocolor = logic[i][j].color;
+                            oszlopElem.style.backgroundColor = "";
+                            logic[i][j].color = "";
+                        }
+                        if (r == 5) {
+                            logic[i][j].otext = logic[i][j].text;
+                            oszlopElem.innerHTML = "";
+                            logic[i][j].text = "";
+                        }
+                        if (r == 6) {
+                            logic[i][j].ocolor = logic[i][j].color;
+                            oszlopElem.style.backgroundColor = "";
+                            logic[i][j].color = "";
+                            logic[i][j].otext = logic[i][j].text;
+                            oszlopElem.innerHTML = "";
+                            logic[i][j].text = "";
+                        }
+                        if (r == 7) {
+                            document.getElementById("szin").value = logic[i][j].color;
+                        }
+                        if (r == 8) {
+                            document.getElementById("szov").value = logic[i][j].text;
+                        }
+                        if (r == 9) {
+                            document.getElementById("szin").value = logic[i][j].color;
+                            document.getElementById("szov").value = logic[i][j].text;
+                        }
+                    })
+                    sorElem.appendChild(oszlopElem);
+                    oszlopElem.addEventListener("contextmenu", (e) => {
+                        e.preventDefault();
+                        if (r == 1 || r == 4 || r == 7) {
+                            logic[i][j].color = logic[i][j].ocolor;
+                            oszlopElem.style.backgroundColor = logic[i][j].ocolor;
+                            logic[i][j].ocolor = "";
+                        }
+                        if (r == 2 || r == 5 || r == 8) {
+                            logic[i][j].text = logic[i][j].otext;
+                            oszlopElem.innerHTML = logic[i][j].otext;
+                            logic[i][j].otext = "";
+                        }
+                        if (r == 3 || r == 6 || r == 9) {
+                            logic[i][j].text = logic[i][j].otext;
+                            oszlopElem.innerHTML = logic[i][j].otext;
+                            logic[i][j].otext = "";
+                            logic[i][j].color = logic[i][j].ocolor;
+                            oszlopElem.style.backgroundColor = logic[i][j].ocolor;
+                            logic[i][j].ocolor = "";
+                        }
+
+                    });
+                }
+                vaszon.appendChild(sorElem);
+            }
+            console.log(logic);
+        }
+
+        //document.addEventListener("change", kiir);
+
+        function changeA() {
+            r = 0;
+            if (document.getElementById("r1").checked == true) {
+                r = 1;
+            }
+            else if (document.getElementById("r2").checked == true) {
+                r = 2;
+            }
+            else if (document.getElementById("r3").checked == true) {
+                r = 3;
+            }
+            console.log(r);
+        }
+
+        function changeB() {
+            r = 0;
+            if (document.getElementById("r4").checked == true) {
+                r = 4;
+            }
+            else if (document.getElementById("r5").checked == true) {
+                r = 5;
+            }
+            else if (document.getElementById("r6").checked == true) {
+                r = 6;
+            }
+            console.log(r);
+        }
+
+        function changeC() {
+            r = 0;
+            if (document.getElementById("r7").checked == true) {
+                r = 7;
+            }
+            else if (document.getElementById("r8").checked == true) {
+                r = 8;
+            }
+            else if (document.getElementById("r9").checked == true) {
+                r = 9;
+            }
+            console.log(r);
+        }
+
+        function kiir() {
+            console.log(logic);
+        }
+    </script>
+    <title>Színező</title>
+</head>
+
+<body>
+    <style>
+        .sor {
+            display: flex;
+            flex-wrap: nowrap;
+            flex-direction: row;
+        }
+
+        .oszlop {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 30px;
+            height: 30px;
+            border: 1px solid gray;
+            background-color: white;
+        }
+        a {color: gray;}
+        body {
+            color: white;
+            text-shadow: 1px 1px 3px #000000;
+        }
+    </style>
+    <label for="sor">Sor:&emsp;&ensp;</label>
+    <input type="number" name="sor" id="sor" value="5"> &ensp; <a>*jobklikk a visszavonáshoz*</a><br>
+    <label for="oszlop">Oszlop:</label>
+    <input type="number" name="oszlop" id="oszlop" value="5">
+    <button type="button" id="ind">Mehet!</button><br>
+    <input type="color" name="" id="szin">
+    <input type="text" id="szov">
+    <input type="button" value="frissit" id="gomb"><br>
+
+    <div onchange="changeA()">
+        <input type="radio" name="radA" id="r1">
+        <label for="r1">Szín</label><br>
+        <input type="radio" name="radA" id="r2">
+        <label for="r2">Szöv</label><br>
+        <input type="radio" name="radA" id="r3">
+        <label for="r3">Szín+Szöv</label><br>
+    </div>
+    <div onchange="changeB()">
+        <input type="radio" name="radB" id="r4">
+        <label for="r4">Szín Törlés</label><br>
+        <input type="radio" name="radB" id="r5">
+        <label for="r5">Szöv Törlés</label><br>
+        <input type="radio" name="radB" id="r6">
+        <label for="r6">Szín+Szöv Törlés</label><br>
+
+    </div>
+    <div onchange="changeC()">
+        <input type="radio" name="radC" id="r7">
+        <label for="r7">Szín Másolás</label><br>
+        <input type="radio" name="radC" id="r8">
+        <label for="r8">Szöv Másolás</label><br>
+        <input type="radio" name="radC" id="r9">
+        <label for="r9">Szín+Szöv Másolás</label><br>
+    </div>
+    <div id="vaszon"></div>
+</body>
+
+</html>
