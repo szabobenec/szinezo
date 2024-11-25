@@ -7,6 +7,7 @@
     <link rel="icon" type="image/svg+xml" href="https://i.imghippo.com/files/ZZ5328EM.png">
     <script>
 
+
         document.write("<style>body{background-color:black;color:white}</style>");
         let adat = [];
         //adat.push([]);
@@ -147,12 +148,7 @@
             else if (document.getElementById("r3").checked == true) {
                 r = 3;
             }
-            console.log(r);
-        }
-
-        function changeB() {
-            r = 0;
-            if (document.getElementById("r4").checked == true) {
+            else if (document.getElementById("r4").checked == true) {
                 r = 4;
             }
             else if (document.getElementById("r5").checked == true) {
@@ -161,12 +157,7 @@
             else if (document.getElementById("r6").checked == true) {
                 r = 6;
             }
-            console.log(r);
-        }
-
-        function changeC() {
-            r = 0;
-            if (document.getElementById("r7").checked == true) {
+            else if (document.getElementById("r7").checked == true) {
                 r = 7;
             }
             else if (document.getElementById("r8").checked == true) {
@@ -177,7 +168,6 @@
             }
             console.log(r);
         }
-
         function kiir() {
             console.log(logic);
         }
@@ -202,47 +192,116 @@
             border: 1px solid gray;
             background-color: white;
         }
-        a {color: gray;}
+
+        a {
+            color: gray;
+        }
+
         body {
             color: white;
             text-shadow: 1px 1px 3px #000000;
+            margin: 0;
+            padding: 0;
+        }
+
+        .page {
+            width: 30%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .panel {
+            width: max-content;
+            height: max-content;
+            display: flex;
+            flex-direction: column;
+            justify-content: left;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .block {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .block-l {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: left;
+        }
+
+        input[type=number] {
+            width: 35px;
+        }
+        @media screen and (min-width: 500px) {
+            .panel {
+                flex-direction: row;
+                justify-content: flex-start;
+                align-items: flex-start;
+                gap: 20px;
+            }
+
+            .block-l {
+                height: 100%;
+                width: 100%;
+            }
         }
     </style>
-    <label for="sor">Sor:&emsp;&ensp;</label>
-    <input type="number" name="sor" id="sor" value="5"> &ensp; <a>*jobklikk a visszavonáshoz*</a><br>
-    <label for="oszlop">Oszlop:</label>
-    <input type="number" name="oszlop" id="oszlop" value="5">
-    <button type="button" id="ind">Mehet!</button><br>
-    <input type="color" name="" id="szin">
-    <input type="text" id="szov">
-    <input type="button" value="frissit" id="gomb"><br>
 
-    <div onchange="changeA()">
-        <input type="radio" name="radA" id="r1">
-        <label for="r1">Szín</label><br>
-        <input type="radio" name="radA" id="r2">
-        <label for="r2">Szöv</label><br>
-        <input type="radio" name="radA" id="r3">
-        <label for="r3">Szín+Szöv</label><br>
-    </div>
-    <div onchange="changeB()">
-        <input type="radio" name="radB" id="r4">
-        <label for="r4">Szín Törlés</label><br>
-        <input type="radio" name="radB" id="r5">
-        <label for="r5">Szöv Törlés</label><br>
-        <input type="radio" name="radB" id="r6">
-        <label for="r6">Szín+Szöv Törlés</label><br>
+    <div class="page">
+        <div class="panel">
+            <div class="block">
+                <div>
+                    <label for="sor">Sor:</label>
+                    <input type="number" name="sor" id="sor" value="5">
+                    <label for="oszlop">Oszlop:</label>
+                    <input type="number" name="oszlop" id="oszlop" value="5">
 
+                </div>
+
+
+                <div>
+                    <input type="color" name="" id="szin">
+                    <label for="">⇐Szín&emsp;Szöveg↴</label><br>
+                    <input type="text" id="szov" value="_szoveg">
+
+                </div>
+                <input type="button" value="Frissít" id="gomb">
+                <button type="button" id="ind">Új tábla!</button>
+                <a>*jobklikk:&emsp; visszavonás*</a><br>
+                <div onchange="changeA()">
+                    <input type="radio" name="RAD" id="r1">
+                    <label for="r1">Szín</label><br>
+                    <input type="radio" name="RAD" id="r2">
+                    <label for="r2">Szöv</label><br>
+                    <input type="radio" name="RAD" id="r3">
+                    <label for="r3">Szín+Szöv</label><br>
+
+                    <input type="radio" name="RAD" id="r4">
+                    <label for="r4">Szín Törlés</label><br>
+                    <input type="radio" name="RAD" id="r5">
+                    <label for="r5">Szöv Törlés</label><br>
+                    <input type="radio" name="RAD" id="r6">
+                    <label for="r6">Szín+Szöv Törlés</label><br>
+
+                    <input type="radio" name="RAD" id="r7">
+                    <label for="r7">Szín Másolás</label><br>
+                    <input type="radio" name="RAD" id="r8">
+                    <label for="r8">Szöv Másolás</label><br>
+                    <input type="radio" name="RAD" id="r9">
+                    <label for="r9">Szín+Szöv Másolás</label><br>
+                </div>
+
+            </div>
+
+            <div class="block-l">
+                <div id="vaszon"></div>
+            </div>
+        </div>
     </div>
-    <div onchange="changeC()">
-        <input type="radio" name="radC" id="r7">
-        <label for="r7">Szín Másolás</label><br>
-        <input type="radio" name="radC" id="r8">
-        <label for="r8">Szöv Másolás</label><br>
-        <input type="radio" name="radC" id="r9">
-        <label for="r9">Szín+Szöv Másolás</label><br>
-    </div>
-    <div id="vaszon"></div>
 </body>
 
 </html>
